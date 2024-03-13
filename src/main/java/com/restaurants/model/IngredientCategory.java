@@ -1,12 +1,17 @@
 package com.restaurants.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,20 +21,20 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "order_items")
-public class OrderItem {
-
+@Table(name = "ingredient_category")
+public class IngredientCategory {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	private String name;
 	
-	@ManyToOne//Multiple user can have same food
-	private Food food;
+	@JsonIgnore
+	@ManyToOne
+	private Restaurant restaurant;
 	
-	private Integer quantity;
-	
-	private Long totalPrice;
-	
-	private List<String> ingredients;
+	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+	private List<IngredientsItem> ingredients = new ArrayList<>();
+
 }

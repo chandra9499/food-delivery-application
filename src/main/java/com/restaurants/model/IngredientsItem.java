@@ -1,6 +1,6 @@
 package com.restaurants.model;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,20 +16,21 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "order_items")
-public class OrderItem {
+@Table(name = "ingredients_item")
+public class IngredientsItem {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	private String name;
 	
-	@ManyToOne//Multiple user can have same food
-	private Food food;
+	@ManyToOne
+	private IngredientCategory category;
 	
-	private Integer quantity;
+	@JsonIgnore
+	@ManyToOne
+	private Restaurant  restaurant;
 	
-	private Long totalPrice;
-	
-	private List<String> ingredients;
+	private Boolean inStoke=true;
 }
