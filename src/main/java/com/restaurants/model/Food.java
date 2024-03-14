@@ -41,14 +41,14 @@ public class Food {
 	@ElementCollection //Separate table for food images
 	private List<String> images;
 	
-	private Boolean available;
+	private boolean available;
 	
 	@ManyToOne
 	private Restaurant restaurant;
 	
-	private Boolean isvegetarian;
+	private boolean vegetarian;
 	
-	private Boolean isSeasonal;
+	private boolean Seasonal;
 	
 	@ManyToMany
 	private List<IngredientsItem> ingredientsItems = new ArrayList<>();

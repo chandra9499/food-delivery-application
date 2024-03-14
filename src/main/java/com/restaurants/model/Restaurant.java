@@ -61,7 +61,7 @@ public class Restaurant {
 	
 	private LocalDateTime registrationDate;
 	
-	private Boolean isOpen;
+	private boolean open=true;
 	
 	@JsonIgnore//we will make separate api to fetch food list
 	@OneToMany(cascade = CascadeType.ALL , mappedBy = "restaurant")
